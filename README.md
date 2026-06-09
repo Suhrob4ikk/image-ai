@@ -80,3 +80,7 @@ python image_ai.py
 image_ai.py   — основной файл программы
 README.md     — этот файл
 ```
+
+---
+
+Проект разработан при помощи [Claude Sonnet 4.5](https://claude.ai) (Anthropic).
