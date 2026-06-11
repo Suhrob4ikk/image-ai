@@ -141,15 +141,15 @@ def main():
 
     ensure_ollama()
 
-    # Выбор картинки через окно проводника
-    print("Сейчас откроется окно — выбери картинку...")
     root = tk.Tk()
     root.withdraw()
+
+    # Выбор картинки через окно проводника
+    print("Сейчас откроется окно — выбери картинку...")
     path = filedialog.askopenfilename(
         title="Выбери картинку",
         filetypes=[("Изображения", "*.jpg *.jpeg *.png *.bmp *.webp"), ("Все файлы", "*.*")]
     )
-    root.destroy()
 
     if not path:
         print("Файл не выбран.")
@@ -185,18 +185,20 @@ def main():
 
         if command.lower() in ["выход", "exit", "quit", "q"]:
             print("Пока!")
+            root.destroy()
             break
 
         # Смена картинки без перезапуска
         if command.lower() in ["смени картинку", "сменить картинку", "другая картинка", "change image"]:
             print("Сейчас откроется окно — выбери новую картинку...")
-            root = tk.Tk()
+            root.deiconify()
+            root.lift()
+            root.focus_force()
             root.withdraw()
             new_path = filedialog.askopenfilename(
                 title="Выбери картинку",
                 filetypes=[("Изображения", "*.jpg *.jpeg *.png *.bmp *.webp"), ("Все файлы", "*.*")]
             )
-            root.destroy()
             if new_path:
                 new_image = cv2.imread(new_path)
                 if new_image is not None:
